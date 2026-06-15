@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --forest: #2C3E2D;
     --sage:   #6B8F6A;
@@ -18,246 +17,91 @@
     --text:   #2A2A2A;
     --muted:  #7A7A6E;
   }
-
   html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; font-weight: 300; background: var(--cream); color: var(--text); line-height: 1.75; }
 
-  body {
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    background: var(--cream);
-    color: var(--text);
-    line-height: 1.75;
-  }
-
-  /* NAV */
   nav {
     position: fixed; top: 0; width: 100%; z-index: 100;
-    background: rgba(247,243,238,0.92);
-    backdrop-filter: blur(8px);
+    background: rgba(247,243,238,0.92); backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(196,162,101,0.2);
-    padding: 1rem 2rem;
-    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
   }
-  nav .logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    letter-spacing: 0.08em;
-    color: var(--forest);
-  }
+  nav .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; letter-spacing: 0.08em; color: var(--forest); }
   nav ul { list-style: none; display: flex; gap: 2rem; }
-  nav a {
-    text-decoration: none;
-    font-size: 0.8rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    transition: color 0.3s;
-  }
+  nav a { text-decoration: none; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); transition: color 0.3s; }
   nav a:hover { color: var(--forest); }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center;
-    padding: 8rem 2rem 6rem;
-    background: var(--forest);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(107,143,106,0.25) 0%, transparent 70%);
-  }
-  .hero-eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 2rem;
-    position: relative;
-  }
-  .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 300;
-    color: var(--cream);
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    position: relative;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-  .hero-sub {
-    font-size: 1.05rem;
-    color: rgba(247,243,238,0.75);
-    max-width: 500px;
-    margin-bottom: 3rem;
-    position: relative;
-  }
-  .btn {
-    display: inline-block;
-    padding: 0.9rem 2.4rem;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    text-decoration: none;
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    transition: background 0.3s, color 0.3s;
-    position: relative;
-  }
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; background: var(--forest); padding-top: 70px; overflow: hidden; }
+  .hero-text { padding: 6rem 4rem 6rem 6rem; position: relative; z-index: 2; }
+  .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 1.5rem; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub { font-size: 1rem; color: rgba(247,243,238,0.7); max-width: 400px; margin-bottom: 2.5rem; }
+  .btn { display: inline-block; padding: 0.9rem 2.4rem; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.3s, color 0.3s; }
   .btn:hover { background: var(--gold); color: var(--forest); }
+  .btn-light { border-color: var(--forest); color: var(--forest); }
+  .btn-light:hover { background: var(--forest); color: var(--cream); }
+  .hero-photo { height: 100vh; position: relative; overflow: hidden; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: brightness(0.85) saturate(0.9); display: block; }
+  .hero-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--forest) 0%, transparent 30%); }
 
-  .scroll-hint {
-    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-    color: rgba(247,243,238,0.4); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-  }
-  .scroll-hint::after {
-    content: '';
-    display: block; width: 1px; height: 40px;
-    background: linear-gradient(to bottom, rgba(247,243,238,0.4), transparent);
-    animation: scrolldown 1.8s ease-in-out infinite;
-  }
-  @keyframes scrolldown { 0%,100%{opacity:0.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.15)} }
-
-  /* SECTIONS */
   section { padding: 6rem 2rem; }
   .container { max-width: 760px; margin: 0 auto; }
-  .container--wide { max-width: 1000px; margin: 0 auto; }
-
-  .section-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.2rem;
-  }
-  h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 300;
-    line-height: 1.2;
-    color: var(--forest);
-    margin-bottom: 1.8rem;
-  }
+  .container--wide { max-width: 1060px; margin: 0 auto; }
+  .section-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+  h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; line-height: 1.2; color: var(--forest); margin-bottom: 1.8rem; }
   h2 em { font-style: italic; }
-  p { margin-bottom: 1.2rem; color: var(--text); }
+  p { margin-bottom: 1.2rem; }
   p:last-child { margin-bottom: 0; }
 
-  /* FEELING SECTION */
   .feeling { background: var(--warm); }
-  .feeling-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 3rem;
-    align-items: start;
-  }
-  .feeling-list {
-    list-style: none;
-    border-left: 1px solid var(--gold);
-    padding-left: 1.5rem;
-  }
-  .feeling-list li {
-    padding: 0.6rem 0;
-    font-size: 0.95rem;
-    color: var(--muted);
-    border-bottom: 1px solid rgba(196,162,101,0.15);
-  }
+  .feeling-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start; }
+  .feeling-list { list-style: none; border-left: 1px solid var(--gold); padding-left: 1.5rem; }
+  .feeling-list li { padding: 0.6rem 0; font-size: 0.95rem; color: var(--muted); border-bottom: 1px solid rgba(196,162,101,0.15); }
   .feeling-list li:last-child { border-bottom: none; }
 
-  /* STORY */
   .story { background: var(--cream); }
-  .story blockquote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    font-style: italic;
-    color: var(--sage);
-    border-left: 2px solid var(--gold);
-    padding-left: 1.5rem;
-    margin: 2rem 0;
-    line-height: 1.5;
-  }
+  .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3rem; }
+  .story-photo { position: relative; overflow: hidden; }
+  .story-photo::before { content: ''; position: absolute; top: -12px; left: -12px; right: 12px; bottom: 12px; border: 1px solid var(--gold); z-index: 0; pointer-events: none; }
+  .story-photo img { width: 100%; height: 520px; object-fit: cover; object-position: center; display: block; position: relative; z-index: 1; }
+  blockquote { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: var(--sage); border-left: 2px solid var(--gold); padding-left: 1.5rem; margin: 2rem 0; line-height: 1.5; }
 
-  /* SERVICES */
   .services { background: var(--forest); }
   .services .section-label { color: rgba(196,162,101,0.8); }
   .services h2 { color: var(--cream); }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    margin-top: 3rem;
-  }
-  .service-card {
-    background: rgba(107,143,106,0.12);
-    padding: 2.5rem 2rem;
-    border: 1px solid rgba(196,162,101,0.15);
-  }
-  .service-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.35rem;
-    font-weight: 400;
-    color: var(--cream);
-    margin-bottom: 1rem;
-  }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 3rem; }
+  .service-card { background: rgba(107,143,106,0.12); padding: 2.5rem 2rem; border: 1px solid rgba(196,162,101,0.15); }
+  .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 400; color: var(--cream); margin-bottom: 1rem; }
   .service-card p { color: rgba(247,243,238,0.65); font-size: 0.9rem; margin: 0; }
 
-  /* CONTACT */
+  .certs { background: var(--warm); }
+  .certs-intro { max-width: 600px; margin-bottom: 3rem; }
+  .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .cert-item { position: relative; overflow: hidden; border: 1px solid rgba(196,162,101,0.3); }
+  .cert-item img { width: 100%; height: 280px; object-fit: cover; object-position: top; display: block; filter: saturate(0.7); transition: filter 0.4s, transform 0.4s; }
+  .cert-item:hover img { filter: saturate(1); transform: scale(1.03); }
+  .cert-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(44,62,45,0.9)); color: var(--cream); font-size: 0.75rem; letter-spacing: 0.08em; padding: 1.5rem 1rem 0.8rem; }
+
   .contact { background: var(--cream); text-align: center; }
-  .contact h2 { margin-bottom: 1rem; }
-  .contact .sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.2rem;
-    color: var(--sage);
-    margin-bottom: 2.5rem;
-  }
-  .contact-info {
-    display: flex; justify-content: center; gap: 3rem;
-    flex-wrap: wrap;
-    margin-top: 3rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid rgba(196,162,101,0.3);
-  }
-  .contact-info a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    transition: color 0.3s;
-  }
+  .contact .sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; color: var(--sage); margin-bottom: 2rem; }
+  .contact-info { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(196,162,101,0.3); }
+  .contact-info a { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.05em; transition: color 0.3s; }
   .contact-info a:hover { color: var(--forest); }
 
-  /* FOOTER */
-  footer {
-    background: var(--forest);
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.75rem;
-    color: rgba(247,243,238,0.35);
-    letter-spacing: 0.05em;
-  }
+  footer { background: var(--forest); text-align: center; padding: 2rem; font-size: 0.75rem; color: rgba(247,243,238,0.35); letter-spacing: 0.05em; }
 
-  /* DIVIDER */
-  .divider {
-    width: 40px; height: 1px;
-    background: var(--gold);
-    margin: 0 auto 3rem;
-  }
-  .divider--left { margin: 0 0 3rem; }
-
-  /* RESPONSIVE */
-  @media (max-width: 720px) {
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 5rem 2rem 3rem; }
+    .hero-photo { height: 50vh; }
+    .hero-photo::after { background: linear-gradient(to bottom, var(--forest) 0%, transparent 30%); }
+    .feeling-grid, .story-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .story-photo { order: -1; }
+    .story-photo img { height: 320px; }
+    .services-grid, .certs-grid { grid-template-columns: 1fr; }
     nav ul { display: none; }
-    .feeling-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .services-grid { grid-template-columns: 1fr; }
-    .contact-info { gap: 1.5rem; flex-direction: column; align-items: center; }
+    .contact-info { flex-direction: column; align-items: center; gap: 1rem; }
   }
 </style>
 </head>
@@ -266,29 +110,31 @@
 <nav>
   <div class="logo">Yvonne Danisch</div>
   <ul>
+    <li><a href="#uczucie">O Tobie</a></li>
     <li><a href="#historia">Historia</a></li>
     <li><a href="#oferta">Oferta</a></li>
     <li><a href="#kontakt">Kontakt</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <p class="hero-eyebrow">Towarzyszka w drodze do siebie</p>
-  <h1>Wróć do <em>siebie</em></h1>
-  <p class="hero-sub">Wszystko, czego szukasz, już w Tobie jest.</p>
-  <a href="#kontakt" class="btn">Umów pierwszą rozmowę</a>
-  <div class="scroll-hint">Przewiń</div>
+  <div class="hero-text">
+    <p class="hero-eyebrow">Towarzyszka w drodze do siebie</p>
+    <h1>Wróć do <em>siebie</em></h1>
+    <p class="hero-sub">Wszystko, czego szukasz, już w Tobie jest.</p>
+    <a href="#kontakt" class="btn">Umów pierwszą rozmowę</a>
+  </div>
+  <div class="hero-photo">
+    <img src="IMG_2504.jpeg" alt="Yvonne Danisch">
+  </div>
 </section>
 
-<!-- CZY ZNASZ TO UCZUCIE -->
 <section class="feeling" id="uczucie">
   <div class="container">
     <p class="section-label">Czy to o Tobie?</p>
     <h2>Na zewnątrz wszystko <em>wygląda dobrze</em></h2>
     <p>Pracujesz, dbasz o innych, bierzesz odpowiedzialność za rodzinę i codzienne obowiązki. A jednak gdzieś głęboko czujesz, że czegoś brakuje.</p>
     <p>Być może od dawna stawiasz potrzeby innych ponad własnymi. Być może tęsknisz za większym spokojem, lekkością i prawdziwym połączeniem ze sobą.</p>
-
     <div class="feeling-grid">
       <div>
         <p>Ja również przeszłam tę drogę. Dopiero kiedy się zatrzymałam, odkryłam, że odpowiedzi, których szukałam przez całe życie, znajdują się we mnie.</p>
@@ -306,23 +152,25 @@
   </div>
 </section>
 
-<!-- HISTORIA -->
 <section class="story" id="historia">
-  <div class="container">
+  <div class="container--wide">
     <p class="section-label">Moja historia</p>
-    <div class="divider--left divider"></div>
-    <h2>Od ciągłego działania<br>do życia <em>w zgodzie ze sobą</em></h2>
-
-    <blockquote>„Przyjechałam do Niemiec z biletem w jedną stronę."</blockquote>
-
-    <p>Przez wiele lat budowałam swoje życie od podstaw. Pracowałam w medycynie, rozwijałam się zawodowo, wychowywałam dzieci, kupiłam dom i brałam odpowiedzialność za swoją rodzinę.</p>
-    <p>Przez 35 lat żyłam z pedałem gazu wciśniętym do końca.</p>
-    <p>W pewnym momencie odkryłam, że mimo wszystkich osiągnięć zgubiłam samą siebie. Rozpoczęłam własną podróż poprzez medytację, pracę z energią i rozwój świadomości.</p>
-    <p>Od ponad 10 lat uczę się tej drogi i każdego dnia sama nią podążam. Dzisiaj z radością towarzyszę innym kobietom w ich własnej podróży do wewnętrznego domu, spokoju i połączenia ze sobą.</p>
+    <div class="story-grid">
+      <div class="story-photo">
+        <img src="IMG_1190.jpeg" alt="Yvonne w naturze">
+      </div>
+      <div>
+        <h2>Od ciągłego działania<br>do życia <em>w zgodzie ze sobą</em></h2>
+        <blockquote>„Przyjechałam do Niemiec z biletem w jedną stronę."</blockquote>
+        <p>Przez wiele lat budowałam swoje życie od podstaw. Pracowałam w medycynie, rozwijałam się zawodowo, wychowywałam dzieci i brałam odpowiedzialność za wszystko wokół mnie.</p>
+        <p>Przez 35 lat żyłam z pedałem gazu wciśniętym do końca. W pewnym momencie odkryłam, że mimo wszystkich osiągnięć zgubiłam samą siebie.</p>
+        <p>Rozpoczęłam własną podróż poprzez medytację, pracę z energią i rozwój świadomości. Od ponad 10 lat uczę się tej drogi i każdego dnia sama nią podążam.</p>
+        <p>Dzisiaj z radością towarzyszę innym kobietom w ich własnej podróży do wewnętrznego domu, spokoju i połączenia ze sobą.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- OFERTA -->
 <section class="services" id="oferta">
   <div class="container--wide">
     <p class="section-label">Jak mogę Ci pomóc?</p>
@@ -344,15 +192,37 @@
   </div>
 </section>
 
-<!-- KONTAKT -->
+<section class="certs" id="certyfikaty">
+  <div class="container--wide">
+    <p class="section-label">Wykształcenie i certyfikaty</p>
+    <div class="certs-intro">
+      <h2>Wiedza <em>potwierdzona</em> latami praktyki</h2>
+      <p style="color:var(--muted)">Moje wykształcenie medyczne łączę z wieloletnim szkoleniem w Energy Dancing, LichtYoga i pracy z energią — zawsze w służbie człowieka.</p>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-item">
+        <img src="IMG_1709.jpeg" alt="Certyfikat Energy Dancing Practitioner">
+        <div class="cert-label">Energy Dancing Practitioner · David Wared</div>
+      </div>
+      <div class="cert-item">
+        <img src="IMG_1711.jpeg" alt="Certyfikat Energy Dancing Teacher">
+        <div class="cert-label">Energy Dancing Teacher · David Wared</div>
+      </div>
+      <div class="cert-item">
+        <img src="IMG_1710.jpeg" alt="LichtYoga Lehrerin">
+        <div class="cert-label">LichtYoga-Lehrerin · David Wared</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="contact" id="kontakt">
   <div class="container">
     <p class="section-label">Kontakt</p>
     <h2>Nie musisz być <em>silna cały czas</em></h2>
     <p class="sub">Jeżeli czujesz, że nadszedł Twój moment, serdecznie Cię zapraszam.</p>
-    <p>Nie po to, żeby stać się kimś innym.<br>Ale po to, żeby wrócić do siebie.</p>
-    <a href="#kontakt" class="btn">Umów pierwszą rozmowę</a>
-
+    <p style="color:var(--muted); margin-bottom:2rem;">Nie po to, żeby stać się kimś innym.<br>Ale po to, żeby wrócić do siebie.</p>
+    <a href="mailto:email@yvonne.de" class="btn btn-light">Napisz do mnie</a>
     <div class="contact-info">
       <a href="mailto:email@yvonne.de">email@yvonne.de</a>
       <a href="tel:+49000000000">+49 000 000 000</a>
